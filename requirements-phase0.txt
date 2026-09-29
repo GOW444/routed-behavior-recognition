@@ -1,0 +1,5 @@
+torch>=2.0
+torch-dct==0.1.6
+numpy
+matplotlib  # imported (unused) by FreqMixFormer's spa_freq_mixf.py
+pyflakes

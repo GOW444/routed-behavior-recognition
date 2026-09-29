@@ -1,0 +1,1286 @@
+{
+  "repo_commit": "03978e1756b5d3501f7390e87ac92c94e237e45d",
+  "torch": "2.14.0+cu130",
+  "unmodified_import": {
+    "runs_unmodified": false,
+    "error": "NameError: name 'torch' is not defined"
+  },
+  "shim": "only `torch` injected into the module namespace; no other change",
+  "variants": {
+    "ResNet34_style (used by main.py:163)": {
+      "params_total": 43762179,
+      "batchnorm3d_config_counts": {
+        "track_running_stats=True,momentum=0.1": 67
+      },
+      "shape_sweep": [
+        {
+          "t_slow_in": 4,
+          "t_fast_in": 20,
+          "ok": true,
+          "logits": [
+            2,
+            3
+          ],
+          "shapes": {
+            "layer1_slow": [
+              2,
+              64,
+              4,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              16,
+              20,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              64,
+              4,
+              56,
+              56
+            ],
+            "lateral1_slow": [
+              2,
+              16,
+              1,
+              56,
+              56
+            ],
+            "layer2_slow": [
+              2,
+              128,
+              4,
+              28,
+              28
+            ],
+            "layer2_fast": [
+              2,
+              32,
+              20,
+              28,
+              28
+            ],
+            "lateral2_fast": [
+              2,
+              128,
+              4,
+              28,
+              28
+            ],
+            "lateral2_slow": [
+              2,
+              32,
+              1,
+              28,
+              28
+            ],
+            "layer3_slow": [
+              2,
+              256,
+              4,
+              14,
+              14
+            ],
+            "layer3_fast": [
+              2,
+              64,
+              20,
+              14,
+              14
+            ],
+            "lateral3_fast": [
+              2,
+              256,
+              4,
+              14,
+              14
+            ],
+            "lateral3_slow": [
+              2,
+              64,
+              1,
+              14,
+              14
+            ],
+            "layer4_slow": [
+              2,
+              512,
+              4,
+              7,
+              7
+            ],
+            "layer4_fast": [
+              2,
+              128,
+              20,
+              7,
+              7
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                64,
+                4,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                4,
+                56,
+                56
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "relu_fast + lateral1_slow",
+              "target_shape": [
+                2,
+                16,
+                20,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                16,
+                1,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer2_slow + lateral2_fast",
+              "target_shape": [
+                2,
+                128,
+                4,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                128,
+                4,
+                28,
+                28
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer2_fast + lateral2_slow",
+              "target_shape": [
+                2,
+                32,
+                20,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                32,
+                1,
+                28,
+                28
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer3_slow + lateral3_fast",
+              "target_shape": [
+                2,
+                256,
+                4,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                4,
+                14,
+                14
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer3_fast + lateral3_slow",
+              "target_shape": [
+                2,
+                64,
+                20,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                1,
+                14,
+                14
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            }
+          ]
+        },
+        {
+          "t_slow_in": 4,
+          "t_fast_in": 32,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (4) must match the size of tensor b (7) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              64,
+              4,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              16,
+              32,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              64,
+              7,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                64,
+                4,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                7,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        },
+        {
+          "t_slow_in": 8,
+          "t_fast_in": 32,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (7) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              64,
+              8,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              16,
+              32,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              64,
+              7,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                64,
+                8,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                7,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        },
+        {
+          "t_slow_in": 8,
+          "t_fast_in": 40,
+          "ok": true,
+          "logits": [
+            2,
+            3
+          ],
+          "shapes": {
+            "layer1_slow": [
+              2,
+              64,
+              8,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              16,
+              40,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              64,
+              8,
+              56,
+              56
+            ],
+            "lateral1_slow": [
+              2,
+              16,
+              1,
+              56,
+              56
+            ],
+            "layer2_slow": [
+              2,
+              128,
+              8,
+              28,
+              28
+            ],
+            "layer2_fast": [
+              2,
+              32,
+              40,
+              28,
+              28
+            ],
+            "lateral2_fast": [
+              2,
+              128,
+              8,
+              28,
+              28
+            ],
+            "lateral2_slow": [
+              2,
+              32,
+              1,
+              28,
+              28
+            ],
+            "layer3_slow": [
+              2,
+              256,
+              8,
+              14,
+              14
+            ],
+            "layer3_fast": [
+              2,
+              64,
+              40,
+              14,
+              14
+            ],
+            "lateral3_fast": [
+              2,
+              256,
+              8,
+              14,
+              14
+            ],
+            "lateral3_slow": [
+              2,
+              64,
+              1,
+              14,
+              14
+            ],
+            "layer4_slow": [
+              2,
+              512,
+              8,
+              7,
+              7
+            ],
+            "layer4_fast": [
+              2,
+              128,
+              40,
+              7,
+              7
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                64,
+                8,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                8,
+                56,
+                56
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "relu_fast + lateral1_slow",
+              "target_shape": [
+                2,
+                16,
+                40,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                16,
+                1,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer2_slow + lateral2_fast",
+              "target_shape": [
+                2,
+                128,
+                8,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                128,
+                8,
+                28,
+                28
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer2_fast + lateral2_slow",
+              "target_shape": [
+                2,
+                32,
+                40,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                32,
+                1,
+                28,
+                28
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer3_slow + lateral3_fast",
+              "target_shape": [
+                2,
+                256,
+                8,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                8,
+                14,
+                14
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer3_fast + lateral3_slow",
+              "target_shape": [
+                2,
+                64,
+                40,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                1,
+                14,
+                14
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            }
+          ]
+        },
+        {
+          "t_slow_in": 16,
+          "t_fast_in": 64,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (16) must match the size of tensor b (13) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              64,
+              16,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              16,
+              64,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              64,
+              13,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                64,
+                16,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                64,
+                13,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        }
+      ],
+      "bn_eval_batch_dependence_T4_20": {
+        "max_abs_logit_diff_alone_vs_batch": 7.450580596923828e-09,
+        "max_abs_logit_diff_batch_vs_other_companions": 0.0
+      }
+    },
+    "ResNet50_style": {
+      "params_total": 37002019,
+      "batchnorm3d_config_counts": {
+        "track_running_stats=True,momentum=0.1": 9,
+        "track_running_stats=False,momentum=0": 87
+      },
+      "shape_sweep": [
+        {
+          "t_slow_in": 4,
+          "t_fast_in": 20,
+          "ok": true,
+          "logits": [
+            2,
+            3
+          ],
+          "shapes": {
+            "layer1_slow": [
+              2,
+              256,
+              4,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              32,
+              20,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              256,
+              4,
+              56,
+              56
+            ],
+            "lateral1_slow": [
+              2,
+              32,
+              1,
+              56,
+              56
+            ],
+            "layer2_slow": [
+              2,
+              512,
+              4,
+              28,
+              28
+            ],
+            "layer2_fast": [
+              2,
+              128,
+              20,
+              28,
+              28
+            ],
+            "lateral2_fast": [
+              2,
+              512,
+              4,
+              28,
+              28
+            ],
+            "lateral2_slow": [
+              2,
+              128,
+              1,
+              28,
+              28
+            ],
+            "layer3_slow": [
+              2,
+              1024,
+              4,
+              14,
+              14
+            ],
+            "layer3_fast": [
+              2,
+              256,
+              20,
+              14,
+              14
+            ],
+            "lateral3_fast": [
+              2,
+              1024,
+              4,
+              14,
+              14
+            ],
+            "lateral3_slow": [
+              2,
+              256,
+              1,
+              14,
+              14
+            ],
+            "layer4_slow": [
+              2,
+              2048,
+              4,
+              7,
+              7
+            ],
+            "layer4_fast": [
+              2,
+              512,
+              20,
+              7,
+              7
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                256,
+                4,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                4,
+                56,
+                56
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "relu_fast + lateral1_slow",
+              "target_shape": [
+                2,
+                32,
+                20,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                32,
+                1,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer2_slow + lateral2_fast",
+              "target_shape": [
+                2,
+                512,
+                4,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                512,
+                4,
+                28,
+                28
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer2_fast + lateral2_slow",
+              "target_shape": [
+                2,
+                128,
+                20,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                128,
+                1,
+                28,
+                28
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer3_slow + lateral3_fast",
+              "target_shape": [
+                2,
+                1024,
+                4,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                1024,
+                4,
+                14,
+                14
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer3_fast + lateral3_slow",
+              "target_shape": [
+                2,
+                256,
+                20,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                1,
+                14,
+                14
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            }
+          ]
+        },
+        {
+          "t_slow_in": 4,
+          "t_fast_in": 32,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (4) must match the size of tensor b (7) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              256,
+              4,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              32,
+              32,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              256,
+              7,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                256,
+                4,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                7,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        },
+        {
+          "t_slow_in": 8,
+          "t_fast_in": 32,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (8) must match the size of tensor b (7) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              256,
+              8,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              32,
+              32,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              256,
+              7,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                256,
+                8,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                7,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        },
+        {
+          "t_slow_in": 8,
+          "t_fast_in": 40,
+          "ok": true,
+          "logits": [
+            2,
+            3
+          ],
+          "shapes": {
+            "layer1_slow": [
+              2,
+              256,
+              8,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              32,
+              40,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              256,
+              8,
+              56,
+              56
+            ],
+            "lateral1_slow": [
+              2,
+              32,
+              1,
+              56,
+              56
+            ],
+            "layer2_slow": [
+              2,
+              512,
+              8,
+              28,
+              28
+            ],
+            "layer2_fast": [
+              2,
+              128,
+              40,
+              28,
+              28
+            ],
+            "lateral2_fast": [
+              2,
+              512,
+              8,
+              28,
+              28
+            ],
+            "lateral2_slow": [
+              2,
+              128,
+              1,
+              28,
+              28
+            ],
+            "layer3_slow": [
+              2,
+              1024,
+              8,
+              14,
+              14
+            ],
+            "layer3_fast": [
+              2,
+              256,
+              40,
+              14,
+              14
+            ],
+            "lateral3_fast": [
+              2,
+              1024,
+              8,
+              14,
+              14
+            ],
+            "lateral3_slow": [
+              2,
+              256,
+              1,
+              14,
+              14
+            ],
+            "layer4_slow": [
+              2,
+              2048,
+              8,
+              7,
+              7
+            ],
+            "layer4_fast": [
+              2,
+              512,
+              40,
+              7,
+              7
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                256,
+                8,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                8,
+                56,
+                56
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "relu_fast + lateral1_slow",
+              "target_shape": [
+                2,
+                32,
+                40,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                32,
+                1,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer2_slow + lateral2_fast",
+              "target_shape": [
+                2,
+                512,
+                8,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                512,
+                8,
+                28,
+                28
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer2_fast + lateral2_slow",
+              "target_shape": [
+                2,
+                128,
+                40,
+                28,
+                28
+              ],
+              "lateral_shape": [
+                2,
+                128,
+                1,
+                28,
+                28
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            },
+            {
+              "add": "layer3_slow + lateral3_fast",
+              "target_shape": [
+                2,
+                1024,
+                8,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                1024,
+                8,
+                14,
+                14
+              ],
+              "temporal_match": true,
+              "silent_temporal_broadcast": false
+            },
+            {
+              "add": "layer3_fast + lateral3_slow",
+              "target_shape": [
+                2,
+                256,
+                40,
+                14,
+                14
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                1,
+                14,
+                14
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": true
+            }
+          ]
+        },
+        {
+          "t_slow_in": 16,
+          "t_fast_in": 64,
+          "ok": false,
+          "error": "RuntimeError: The size of tensor a (16) must match the size of tensor b (13) at non-singleton dimension 2",
+          "shapes": {
+            "layer1_slow": [
+              2,
+              256,
+              16,
+              56,
+              56
+            ],
+            "relu_fast": [
+              2,
+              32,
+              64,
+              56,
+              56
+            ],
+            "lateral1_fast": [
+              2,
+              256,
+              13,
+              56,
+              56
+            ]
+          },
+          "adds": [
+            {
+              "add": "layer1_slow + lateral1_fast",
+              "target_shape": [
+                2,
+                256,
+                16,
+                56,
+                56
+              ],
+              "lateral_shape": [
+                2,
+                256,
+                13,
+                56,
+                56
+              ],
+              "temporal_match": false,
+              "silent_temporal_broadcast": false
+            }
+          ]
+        }
+      ],
+      "bn_eval_batch_dependence_T4_20": {
+        "max_abs_logit_diff_alone_vs_batch": 0.01490435004234314,
+        "max_abs_logit_diff_batch_vs_other_companions": 0.21869423985481262
+      }
+    }
+  },
+  "pyflakes": [
+    "Dataloaderrgbpose.py:4:1: 'PIL.Image' imported but unused",
+    "Dataloaderrgbpose.py:6:1: 'torch.utils.data.DataLoader' imported but unused",
+    "Dataloaderrgbpose.py:8:1: 'random' imported but unused",
+    "Dataloaderrgbpose.py:9:1: 'numpy as np' imported but unused",
+    "Dataloaderrgbpose.py:10:1: redefinition of unused 'randrange' from line 2",
+    "Dataloaderrgbpose.py:52:9: local variable 'rndNo' is assigned to but never used",
+    "Dataloaderrgbpose.py:76:18: undefined name 'torch'",
+    "Dataloaderrgbpose.py:77:18: undefined name 'torch'",
+    "Dataloaderrgbpose.py:85:20: undefined name 'UniformSampler'",
+    "Dataloaderrgbpose.py:99:36: undefined name 'left_kps'",
+    "Dataloaderrgbpose.py:99:54: undefined name 'right_kps'",
+    "Dataloaderrgbpose.py:102:41: undefined name 'areaa_range'",
+    "Dataloaderrgbpose.py:106:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:117:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:121:36: undefined name 'left_kps'",
+    "Dataloaderrgbpose.py:121:54: undefined name 'right_kps'",
+    "Dataloaderrgbpose.py:128:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:139:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:144:36: undefined name 'left_kps'",
+    "Dataloaderrgbpose.py:144:54: undefined name 'right_kps'",
+    "Dataloaderrgbpose.py:151:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:155:32: undefined name 'scalee'",
+    "Dataloaderrgbpose.py:168:45: undefined name 'NoOfFrms2slct_s'",
+    "Dataloaderrgbpose.py:170:44: undefined name 'NoOfFrms2slct_s'",
+    "Dataloaderrgbpose.py:184:12: undefined name 'torch'",
+    "Dataloaderrgbpose.py:189:20: undefined name 'os'",
+    "Dataloaderrgbpose.py:200:19: undefined name 'torch'",
+    "Poseaugmentation.py:267:24: undefined name 'cp'",
+    "Poseaugmentation.py:268:20: undefined name 'Flip'",
+    "Poseaugmentation.py:297:31: undefined name 'randrange'",
+    "Poseaugmentation.py:472:20: undefined name 'random'",
+    "Poseaugmentation.py:473:20: undefined name 'random'",
+    "main.py:2:1: 'argparse' imported but unused",
+    "main.py:3:1: 'copy' imported but unused",
+    "main.py:5:1: 'os.path as osp' imported but unused",
+    "main.py:6:1: 'time' imported but unused",
+    "main.py:7:1: 'warnings' imported but unused",
+    "main.py:13:1: redefinition of unused 'os' from line 4",
+    "main.py:14:1: 'os.listdir' imported but unused",
+    "main.py:15:1: 'os.path.isfile' imported but unused",
+    "main.py:15:1: 'os.path.join' imported but unused",
+    "main.py:33:3: local variable 'cnt' is assigned to but never used",
+    "main.py:69:5: local variable 'cnt' is assigned to but never used",
+    "main.py:159:20: undefined name 'DataLoader'",
+    "main.py:160:20: undefined name 'DataLoader'",
+    "modelrgbposeslowfast.py:1:1: 'torch.nn.functional as nnf' imported but unused",
+    "modelrgbposeslowfast.py:131:7: undefined name 'torch'",
+    "modelrgbposeslowfast.py:277:9: undefined name 'torch'"
+  ]
+}
