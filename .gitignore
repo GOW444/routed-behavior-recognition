@@ -1,0 +1,7 @@
+third_party/
+__pycache__/
+*.pyc
+.venv/
+venv/
+# reference PDFs are private/copyrighted: keep them local, never commit
+references/*.pdf

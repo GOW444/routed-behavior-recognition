@@ -1,0 +1,73 @@
+{
+  "repo_commit": "1d3c2add885888f6eaa93135b9fb11dfdbc42be2",
+  "torch": "2.14.0+cu130",
+  "numpy": "2.4.6",
+  "dct_unit_test": {
+    "input_shape": [
+      2,
+      4,
+      16,
+      25
+    ],
+    "max_abs_coeff_k>=1_along_last_dim": 1.8881378309743013e-06,
+    "idct(dct(x)) max error": 2.384185791015625e-07,
+    "conclusion": "torch_dct.dct transforms the LAST dim"
+  },
+  "block_trace": {
+    "shim": {
+      ".cuda(x0.get_device())": "",
+      "device='cuda'": "device=x0.device"
+    },
+    "input_NCTV": [
+      2,
+      80,
+      64,
+      25
+    ],
+    "output_shape": [
+      2,
+      80,
+      64,
+      25
+    ],
+    "n_calls": 24,
+    "unique_calls(kind, input_shape)": [
+      [
+        "dct",
+        [
+          2,
+          20,
+          64,
+          25
+        ]
+      ],
+      [
+        "idct",
+        [
+          2,
+          20,
+          25,
+          25
+        ]
+      ]
+    ],
+    "axis_transformed": {
+      "dct": "V (joints)",
+      "idct": "last dim of a VxV attention map (joint index w)"
+    }
+  },
+  "hardcoded_operator_constants": {
+    "l": {
+      "value": 0.5,
+      "line": "model/spa_freq_mixf.py:127"
+    },
+    "h": {
+      "value": 1.5,
+      "line": "model/spa_freq_mixf.py:128"
+    },
+    "d": {
+      "value": 13.0,
+      "line": "model/spa_freq_mixf.py:129"
+    }
+  }
+}
